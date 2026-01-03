@@ -15,7 +15,6 @@ class ServiceFactory extends Factory
             'name' => fake()->name(),
             'description' => fake()->text(),
             'price' => fake()->randomFloat(2, 0, 999999.99),
-            'image_path' => fake()->word(),
         ];
     }
 }
