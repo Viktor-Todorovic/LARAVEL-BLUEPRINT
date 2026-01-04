@@ -11,7 +11,7 @@ use Illuminate\View\View;
 
 class AppointmentController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $appointments = Appointment::all();
 
@@ -20,12 +20,12 @@ class AppointmentController extends Controller
         ]);
     }
 
-    public function create(Request $request): Response
+    public function create(Request $request)
     {
         return view('appointment.create');
     }
 
-    public function store(AppointmentStoreRequest $request): Response
+    public function store(AppointmentStoreRequest $request)
     {
         $appointment = Appointment::create($request->validated());
 
@@ -34,21 +34,21 @@ class AppointmentController extends Controller
         return redirect()->route('appointments.index');
     }
 
-    public function show(Request $request, Appointment $appointment): Response
+    public function show(Request $request, Appointment $appointment)
     {
         return view('appointment.show', [
             'appointment' => $appointment,
         ]);
     }
 
-    public function edit(Request $request, Appointment $appointment): Response
+    public function edit(Request $request, Appointment $appointment)
     {
         return view('appointment.edit', [
             'appointment' => $appointment,
         ]);
     }
 
-    public function update(AppointmentUpdateRequest $request, Appointment $appointment): Response
+    public function update(AppointmentUpdateRequest $request, Appointment $appointment)
     {
         $appointment->update($request->validated());
 
@@ -57,7 +57,7 @@ class AppointmentController extends Controller
         return redirect()->route('appointments.index');
     }
 
-    public function destroy(Request $request, Appointment $appointment): Response
+    public function destroy(Request $request, Appointment $appointment)
     {
         $appointment->delete();
 
