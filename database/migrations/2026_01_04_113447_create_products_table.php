@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('price', 8, 2);
             $table->string('image_path')->nullable();
             $table->timestamps();
+            $table->boolean('is_offer')->default(false);
         });
     }
 

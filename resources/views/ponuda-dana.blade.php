@@ -1,17 +1,10 @@
 @extends('layouts.public')
 
 @section('content')
-<div class="text-center mb-5">
-    <h1 class="display-4">Katalog</h1> 
-    <div class="btn-group mt-3" role="group">
-        <button type="button" class="btn btn-outline-secondary">Majice</button> 
-        <button type="button" class="btn btn-outline-secondary">Dukserice</button> 
-        <button type="button" class="btn btn-outline-secondary">Košulje</button> 
-    </div>
-</div>
-
-<div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
-    @foreach($products as $product)
+<div class="container">
+    <h1 class="text-center mb-4">Ponuda Dana</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+    @foreach($offers as $product)
     <div class="col" style="max-width: 300px;">
         <div class="card h-100 text-center shadow-sm border-0 product-card">
             
@@ -35,8 +28,13 @@
     </div>
     @endforeach
 </div>
+
+</div>
+</div>
 @endsection
 
+
+<style>
 <style>
     .product-card {
         overflow: hidden;

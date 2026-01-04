@@ -8,6 +8,7 @@ use App\Models\Appointment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Service;
 
 class AppointmentController extends Controller
 {
@@ -22,7 +23,9 @@ class AppointmentController extends Controller
 
     public function create(Request $request)
     {
-        return view('appointment.create');
+        $services = Service::all();
+
+        return view('appointment.create', compact('services'));
     }
 
     public function store(AppointmentStoreRequest $request)
@@ -31,7 +34,7 @@ class AppointmentController extends Controller
 
         $request->session()->flash('appointment.id', $appointment->id);
 
-        return redirect()->route('appointments.index');
+        return redirect()->back()->with('success', 'Termin je uspešno zakazan!');
     }
 
     public function show(Request $request, Appointment $appointment)

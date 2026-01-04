@@ -63,4 +63,15 @@ class ProductController extends Controller
 
         return redirect()->route('products.index');
     }
+
+    public function ponudaDana()
+{
+    $offers = Product::where('is_offer', true)->get();
+
+    return view('ponuda-dana', compact('offers'));
+}
+
+
+
+
 }

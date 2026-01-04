@@ -7,14 +7,31 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-    <nav class="navbar navbar-expand navbar-light bg-white border-bottom mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4" style="background-color: #28a745;">
     <div class="container-fluid">
-        <div class="navbar-nav w-100">
-            <a class="nav-link fw-bold text-dark me-3" href="{{ route('products.index') }}">Katalog</a>
-            
-            <a class="nav-link fw-bold text-dark me-3" href="{{ route('appointments.create') }}">Termin</a>
-            
-            <a class="nav-link fw-bold text-danger ms-auto" href="#">Logout</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav w-100 align-items-center">
+                
+                <a class="nav-link fw-bold me-3 {{ request()->routeIs('ponuda.dana') ? 'active-link' : 'text-white' }}" 
+                   href="{{ route('ponuda.dana') }}">Ponuda dana</a>
+
+                <a class="nav-link fw-bold me-3 {{ request()->routeIs('products.index') ? 'active-link' : 'text-white' }}" 
+                   href="{{ route('products.index') }}">Katalog</a>
+                
+                <a class="nav-link fw-bold me-3 {{ request()->routeIs('appointments.create') ? 'active-link' : 'text-white' }}" 
+                   href="{{ route('appointments.create') }}">Termin</a>
+                
+                <form method="POST" action="{{ route('logout') }}" class="ms-auto mb-0">
+                    @csrf
+                    <button type="submit" class="nav-link fw-bold text-white border-0 bg-transparent px-3 py-2">
+                        Logout
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 </nav>
@@ -26,3 +43,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+<style>
+    /* Boja za link koji NIJE aktivan kada se pređe mišem */
+    .nav-link:hover {
+        color: #d4edda !important; /* Svetlo zelena na hover */
+    }
+
+    /* Boja za AKTIVAN link (tamno zelena pozadina i bela slova) */
+    .active-link {
+        background-color: #1e7e34 !important; /* Tamno zelena */
+        color: white !important;
+        border-radius: 5px;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+</style>

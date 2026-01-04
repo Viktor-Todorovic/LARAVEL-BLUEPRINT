@@ -35,6 +35,11 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/termin', [AppointmentController::class, 'create'])->name('appointments.create');
     Route::post('/termin', [AppointmentController::class, 'store'])->name('appointments.store');
+
+    Route::get('/ponuda-dana', [ProductController::class, 'ponudaDana'])->name('ponuda.dana');
+
+    
+
 });
 
 require __DIR__.'/auth.php';
