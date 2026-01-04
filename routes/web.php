@@ -14,9 +14,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -37,10 +34,27 @@ Route::middleware('auth')->group(function () {
     Route::post('/termin', [AppointmentController::class, 'store'])->name('appointments.store');
 
     Route::get('/ponuda-dana', [ProductController::class, 'ponudaDana'])->name('ponuda.dana');
+    Route::resource('products', ProductController::class);
+
+    Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    
+    // Dashboard sada ima puno ime: admin.dashboard
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+
+    // Resursi sada dobijaju prefiks: admin.appointments.index, admin.products.index, itd.
+    Route::resource('appointments', App\Http\Controllers\Admin\AppointmentController::class);
+    Route::resource('products', ProductController::class);
+
+});
+
+
 
     
 
 });
+
 
 require __DIR__.'/auth.php';
 

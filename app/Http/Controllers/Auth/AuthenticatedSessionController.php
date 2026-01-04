@@ -28,7 +28,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended('/products');
+        if (auth()->user()->is_admin) {
+        return redirect()->route('admin.dashboard'); // Šalje admina na kontrolnu tablu
+}
+
+        return redirect()->route('products.index');
     }
 
     /**
