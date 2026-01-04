@@ -4,7 +4,6 @@ namespace Tests\Feature\Http\Controllers;
 
 use App\Models\Appointment;
 use App\Models\Service;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Carbon;
@@ -55,23 +54,23 @@ final class AppointmentControllerTest extends TestCase
     #[Test]
     public function store_saves_and_redirects(): void
     {
-        $user = User::factory()->create();
+        $client_name = fake()->word();
+        $client_phone = fake()->word();
         $service = Service::factory()->create();
         $appointment_date = Carbon::parse(fake()->dateTime());
-        $status = fake()->word();
 
         $response = $this->post(route('appointments.store'), [
-            'user_id' => $user->id,
+            'client_name' => $client_name,
+            'client_phone' => $client_phone,
             'service_id' => $service->id,
             'appointment_date' => $appointment_date->toDateTimeString(),
-            'status' => $status,
         ]);
 
         $appointments = Appointment::query()
-            ->where('user_id', $user->id)
+            ->where('client_name', $client_name)
+            ->where('client_phone', $client_phone)
             ->where('service_id', $service->id)
             ->where('appointment_date', $appointment_date)
-            ->where('status', $status)
             ->get();
         $this->assertCount(1, $appointments);
         $appointment = $appointments->first();
@@ -121,16 +120,16 @@ final class AppointmentControllerTest extends TestCase
     public function update_redirects(): void
     {
         $appointment = Appointment::factory()->create();
-        $user = User::factory()->create();
+        $client_name = fake()->word();
+        $client_phone = fake()->word();
         $service = Service::factory()->create();
         $appointment_date = Carbon::parse(fake()->dateTime());
-        $status = fake()->word();
 
         $response = $this->put(route('appointments.update', $appointment), [
-            'user_id' => $user->id,
+            'client_name' => $client_name,
+            'client_phone' => $client_phone,
             'service_id' => $service->id,
             'appointment_date' => $appointment_date->toDateTimeString(),
-            'status' => $status,
         ]);
 
         $appointment->refresh();
@@ -138,10 +137,10 @@ final class AppointmentControllerTest extends TestCase
         $response->assertRedirect(route('appointments.index'));
         $response->assertSessionHas('appointment.id', $appointment->id);
 
-        $this->assertEquals($user->id, $appointment->user_id);
+        $this->assertEquals($client_name, $appointment->client_name);
+        $this->assertEquals($client_phone, $appointment->client_phone);
         $this->assertEquals($service->id, $appointment->service_id);
         $this->assertEquals($appointment_date, $appointment->appointment_date);
-        $this->assertEquals($status, $appointment->status);
     }
 
 

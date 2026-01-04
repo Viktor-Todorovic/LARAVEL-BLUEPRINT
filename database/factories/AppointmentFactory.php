@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Service;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AppointmentFactory extends Factory
@@ -14,11 +13,10 @@ class AppointmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'client_name' => fake()->regexify('[A-Za-z0-9]{150}'),
+            'client_phone' => fake()->regexify('[A-Za-z0-9]{20}'),
             'service_id' => Service::factory(),
             'appointment_date' => fake()->dateTime(),
-            'status' => fake()->word(),
-            'notes' => fake()->text(),
         ];
     }
 }

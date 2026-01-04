@@ -53,20 +53,17 @@ final class MaterialControllerTest extends TestCase
     public function store_saves_and_redirects(): void
     {
         $name = fake()->name();
-        $type = fake()->word();
         $stock_quantity = fake()->numberBetween(-10000, 10000);
         $price_per_meter = fake()->randomFloat(/** decimal_attributes **/);
 
         $response = $this->post(route('materials.store'), [
             'name' => $name,
-            'type' => $type,
             'stock_quantity' => $stock_quantity,
             'price_per_meter' => $price_per_meter,
         ]);
 
         $materials = Material::query()
             ->where('name', $name)
-            ->where('type', $type)
             ->where('stock_quantity', $stock_quantity)
             ->where('price_per_meter', $price_per_meter)
             ->get();
@@ -119,13 +116,11 @@ final class MaterialControllerTest extends TestCase
     {
         $material = Material::factory()->create();
         $name = fake()->name();
-        $type = fake()->word();
         $stock_quantity = fake()->numberBetween(-10000, 10000);
         $price_per_meter = fake()->randomFloat(/** decimal_attributes **/);
 
         $response = $this->put(route('materials.update', $material), [
             'name' => $name,
-            'type' => $type,
             'stock_quantity' => $stock_quantity,
             'price_per_meter' => $price_per_meter,
         ]);
@@ -136,7 +131,6 @@ final class MaterialControllerTest extends TestCase
         $response->assertSessionHas('material.id', $material->id);
 
         $this->assertEquals($name, $material->name);
-        $this->assertEquals($type, $material->type);
         $this->assertEquals($stock_quantity, $material->stock_quantity);
         $this->assertEquals($price_per_meter, $material->price_per_meter);
     }
