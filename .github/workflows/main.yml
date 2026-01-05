@@ -52,6 +52,10 @@ jobs:
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
 
+
+    - name: List files in tests directory
+      run: ls -R tests/Feature
+
     - name: Run Migrations
       env:
         DB_CONNECTION: mysql
@@ -62,6 +66,7 @@ jobs:
         DB_PASSWORD: password
       run: php artisan migrate --force
 
+
     - name: Execute tests (PHPUnit)
       env:
         DB_CONNECTION: mysql
@@ -70,4 +75,4 @@ jobs:
         DB_DATABASE: uusi
         DB_USERNAME: root
         DB_PASSWORD: password
-      run: php artisan test
+      run: php artisan test -v --stop-on-failure

@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-final class AppointmentControllerTest extends TestCase
+class AppointmentControllerTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
