@@ -31,5 +31,8 @@
         <env name="PULSE_ENABLED" value="false"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="NIGHTWATCH_ENABLED" value="false"/>
+
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled"/>
+        <env name="LOG_DEPRECATIONS_CHANNEL" value="null"/>
     </php>
 </phpunit>
