@@ -12,9 +12,9 @@ class MaterialFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'stock_quantity' => fake()->numberBetween(-10000, 10000),
-            'price_per_meter' => fake()->randomFloat(2, 0, 999999.99),
+            'name' => fake()->unique()->word(),
+            'stock_quantity' => fake()->numberBetween(10, 100),
+            'price_per_meter' => fake()->randomFloat(2, 500, 5000),
         ];
     }
 }

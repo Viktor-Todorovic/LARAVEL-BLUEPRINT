@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Material;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductFactory extends Factory
@@ -13,11 +12,12 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'description' => fake()->text(),
-            'material_id' => Material::factory(),
-            'price' => fake()->randomFloat(2, 0, 999999.99),
-            'image_path' => fake()->word(),
+            'name' => fake()->word(),
+            'description' => fake()->sentence(),
+            'price' => fake()->randomFloat(2, 1000, 10000),
+            'material_id' => \App\Models\Material::factory(),
+            'image_path' => 'images/test.jpg',
+            'is_offer' => false,
         ];
     }
 }
