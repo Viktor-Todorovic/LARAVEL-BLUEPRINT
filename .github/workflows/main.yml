@@ -57,7 +57,7 @@ jobs:
         DB_CONNECTION: mysql
         DB_HOST: 127.0.0.1
         DB_PORT: 3306
-        DB_DATABASE: testing
+        DB_DATABASE: uusi
         DB_USERNAME: root
         DB_PASSWORD: password
       run: php artisan test
