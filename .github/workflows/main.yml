@@ -54,7 +54,7 @@ jobs:
 
 
     - name: List files in tests directory
-      run: ls -R tests/Feature
+      run: ls -R tests
 
     - name: Run Migrations
       env:
@@ -75,4 +75,4 @@ jobs:
         DB_DATABASE: uusi
         DB_USERNAME: root
         DB_PASSWORD: password
-      run: php artisan test -v --stop-on-failure
+      run: php artisan test --stop-on-failure
