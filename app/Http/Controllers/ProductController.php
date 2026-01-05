@@ -13,11 +13,23 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::all();
+        $materials = \App\Models\Material::all();
 
-        return view('product.index', [
-            'products' => $products,
-        ]);
+
+    $query = Product::query();
+
+
+    if ($request->has('material_id') && $request->material_id != '') {
+        $query->where('material_id', $request->material_id);
+    }
+
+
+    $products = $query->get();
+
+    return view('product.index', [
+        'products' => $products,
+        'materials' => $materials, 
+    ]);
     }
 
     public function create(Request $request)

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="text-center mb-4">Ponuda Dana</h1>
+    <h1 class="text-center mb-4 display-4">Ponuda Dana</h1>
     <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
     @foreach($offers as $product)
     <div class="col" style="max-width: 300px;">

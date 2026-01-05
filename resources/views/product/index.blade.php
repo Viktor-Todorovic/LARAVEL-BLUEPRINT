@@ -3,10 +3,19 @@
 @section('content')
 <div class="text-center mb-5">
     <h1 class="display-4">Katalog</h1> 
-    <div class="btn-group mt-3" role="group">
-        <button type="button" class="btn btn-outline-secondary">Majice</button> 
-        <button type="button" class="btn btn-outline-secondary">Dukserice</button> 
-        <button type="button" class="btn btn-outline-secondary">Košulje</button> 
+    
+    <div class="btn-group mt-3 flex-wrap" role="group">
+        <a href="{{ route('products.index') }}" 
+           class="btn {{ !request('material_id') ? 'btn-success' : 'btn-outline-secondary' }}">
+           Sve
+        </a>
+
+        @foreach($materials as $material)
+            <a href="{{ route('products.index', ['material_id' => $material->id]) }}" 
+               class="btn {{ request('material_id') == $material->id ? 'btn-success' : 'btn-outline-secondary' }}">
+               {{ $material->name }}
+            </a>
+        @endforeach
     </div>
 </div>
 
