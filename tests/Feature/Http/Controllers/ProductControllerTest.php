@@ -4,6 +4,7 @@ namespace Tests\Feature\Http\Controllers;
 
 use App\Models\Material;
 use App\Models\Product;
+use App\Models\User; // Dodato
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use JMac\Testing\Traits\AdditionalAssertions;
@@ -17,12 +18,20 @@ final class ProductControllerTest extends TestCase
 {
     use AdditionalAssertions, RefreshDatabase, WithFaker;
 
+    protected User $user;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+    }
+
     #[Test]
     public function index_displays_view(): void
     {
         $products = Product::factory()->count(3)->create();
 
-        $response = $this->get(route('products.index'));
+        $response = $this->actingAs($this->user)->get(route('products.index'));
 
         $response->assertOk();
         $response->assertViewIs('product.index');
@@ -32,7 +41,7 @@ final class ProductControllerTest extends TestCase
     #[Test]
     public function create_displays_view(): void
     {
-        $response = $this->get(route('products.create'));
+        $response = $this->actingAs($this->user)->get(route('products.create'));
 
         $response->assertOk();
         $response->assertViewIs('product.create');
@@ -54,9 +63,9 @@ final class ProductControllerTest extends TestCase
         $name = fake()->name();
         $description = fake()->text();
         $material = Material::factory()->create();
-        $price = fake()->randomFloat(/** decimal_attributes **/);
+        $price = fake()->randomFloat(2, 10, 1000);
 
-        $response = $this->post(route('products.store'), [
+        $response = $this->actingAs($this->user)->post(route('products.store'), [
             'name' => $name,
             'description' => $description,
             'material_id' => $material->id,
@@ -69,6 +78,7 @@ final class ProductControllerTest extends TestCase
             ->where('material_id', $material->id)
             ->where('price', $price)
             ->get();
+
         $this->assertCount(1, $products);
         $product = $products->first();
 
@@ -81,7 +91,7 @@ final class ProductControllerTest extends TestCase
     {
         $product = Product::factory()->create();
 
-        $response = $this->get(route('products.show', $product));
+        $response = $this->actingAs($this->user)->get(route('products.show', $product));
 
         $response->assertOk();
         $response->assertViewIs('product.show');
@@ -93,7 +103,7 @@ final class ProductControllerTest extends TestCase
     {
         $product = Product::factory()->create();
 
-        $response = $this->get(route('products.edit', $product));
+        $response = $this->actingAs($this->user)->get(route('products.edit', $product));
 
         $response->assertOk();
         $response->assertViewIs('product.edit');
@@ -117,9 +127,9 @@ final class ProductControllerTest extends TestCase
         $name = fake()->name();
         $description = fake()->text();
         $material = Material::factory()->create();
-        $price = fake()->randomFloat(/** decimal_attributes **/);
+        $price = fake()->randomFloat(2, 10, 1000);
 
-        $response = $this->put(route('products.update', $product), [
+        $response = $this->actingAs($this->user)->put(route('products.update', $product), [
             'name' => $name,
             'description' => $description,
             'material_id' => $material->id,
@@ -142,7 +152,7 @@ final class ProductControllerTest extends TestCase
     {
         $product = Product::factory()->create();
 
-        $response = $this->delete(route('products.destroy', $product));
+        $response = $this->actingAs($this->user)->delete(route('products.destroy', $product));
 
         $response->assertRedirect(route('products.index'));
 
