@@ -38,14 +38,14 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     
-    // Dashboard sada ima puno ime: admin.dashboard
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
 
-    // Resursi sada dobijaju prefiks: admin.appointments.index, admin.products.index, itd.
     Route::resource('appointments', App\Http\Controllers\Admin\AppointmentController::class);
-    Route::resource('products', ProductController::class);
+    Route::resource('products', App\Http\Controllers\Admin\ProductController::class);
+    Route::resource('materials', App\Http\Controllers\Admin\MaterialController::class);
+    // Route::resource('products', ProductController::class);
 
 });
 

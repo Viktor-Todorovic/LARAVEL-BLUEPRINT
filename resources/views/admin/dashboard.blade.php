@@ -8,14 +8,14 @@
             <div class="card shadow border-0 p-4">
                 <i class="bi bi-box-seam display-4 text-success"></i>
                 <h5 class="mt-3">Proizvodi</h5>
-                <a href="{{ route('products.index') }}" class="btn btn-success mt-2">Upravljaj</a>
+                <a href="{{ route('admin.products.index') }}" class="btn btn-success mt-2">Upravljaj</a>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card shadow border-0 p-4">
                 <i class="bi bi-layers display-4 text-primary"></i>
                 <h5 class="mt-3">Materijali</h5>
-                <a href="#" class="btn btn-primary mt-2">Upravljaj</a>
+                <a href="{{ route('admin.materials.index') }}" class="btn btn-primary mt-2">Upravljaj</a>
             </div>
         </div>
         <div class="col-md-4">
