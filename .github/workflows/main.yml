@@ -30,8 +30,18 @@ jobs:
         extensions: mbstring, dom, fileinfo, mysql
         coverage: xdebug
 
-    - name: Install Dependencies
+    - name: Install Composer Dependencies
       run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install NPM Dependencies & Build Assets
+      run: |
+        npm install
+        npm run build
 
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
