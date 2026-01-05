@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MaterialStoreRequest;
 use App\Http\Requests\MaterialUpdateRequest;
 use App\Models\Material;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class MaterialController extends Controller
 {

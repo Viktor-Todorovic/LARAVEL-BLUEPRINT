@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Product;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class ProductController extends Controller
 {
@@ -15,21 +13,18 @@ class ProductController extends Controller
     {
         $materials = \App\Models\Material::all();
 
+        $query = Product::query();
 
-    $query = Product::query();
+        if ($request->has('material_id') && $request->material_id != '') {
+            $query->where('material_id', $request->material_id);
+        }
 
+        $products = $query->get();
 
-    if ($request->has('material_id') && $request->material_id != '') {
-        $query->where('material_id', $request->material_id);
-    }
-
-
-    $products = $query->get();
-
-    return view('product.index', [
-        'products' => $products,
-        'materials' => $materials, 
-    ]);
+        return view('product.index', [
+            'products' => $products,
+            'materials' => $materials,
+        ]);
     }
 
     public function create(Request $request)
@@ -77,13 +72,9 @@ class ProductController extends Controller
     }
 
     public function ponudaDana()
-{
-    $offers = Product::where('is_offer', true)->get();
+    {
+        $offers = Product::where('is_offer', true)->get();
 
-    return view('ponuda-dana', compact('offers'));
-}
-
-
-
-
+        return view('ponuda-dana', compact('offers'));
+    }
 }

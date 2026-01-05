@@ -20,10 +20,10 @@ class AppointmentStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-        'client_name' => ['required', 'string', 'max:255'],
-        'client_phone' => ['required', 'string', 'max:50'],
-        'service_id' => ['required', 'exists:services,id'],
-        'appointment_date' => ['required', 'date'],
-    ];
+            'client_name' => ['required', 'string', 'max:255'],
+            'client_phone' => ['required', 'string', 'max:50'],
+            'service_id' => ['required', 'exists:services,id'],
+            'appointment_date' => ['required', 'date'],
+        ];
     }
 }

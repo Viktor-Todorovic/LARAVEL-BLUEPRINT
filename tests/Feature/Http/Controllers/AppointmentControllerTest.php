@@ -30,7 +30,6 @@ final class AppointmentControllerTest extends TestCase
         $response->assertViewHas('appointments', $appointments);
     }
 
-
     #[Test]
     public function create_displays_view(): void
     {
@@ -39,7 +38,6 @@ final class AppointmentControllerTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('appointment.create');
     }
-
 
     #[Test]
     public function store_uses_form_request_validation(): void
@@ -79,7 +77,6 @@ final class AppointmentControllerTest extends TestCase
         $response->assertSessionHas('appointment.id', $appointment->id);
     }
 
-
     #[Test]
     public function show_displays_view(): void
     {
@@ -92,7 +89,6 @@ final class AppointmentControllerTest extends TestCase
         $response->assertViewHas('appointment', $appointment);
     }
 
-
     #[Test]
     public function edit_displays_view(): void
     {
@@ -104,7 +100,6 @@ final class AppointmentControllerTest extends TestCase
         $response->assertViewIs('appointment.edit');
         $response->assertViewHas('appointment', $appointment);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -142,7 +137,6 @@ final class AppointmentControllerTest extends TestCase
         $this->assertEquals($service->id, $appointment->service_id);
         $this->assertEquals($appointment_date, $appointment->appointment_date);
     }
-
 
     #[Test]
     public function destroy_deletes_and_redirects(): void

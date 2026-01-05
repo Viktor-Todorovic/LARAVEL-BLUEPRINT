@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Material;
+use Illuminate\Database\Seeder;
 
 class MaterialSeeder extends Seeder
 {
@@ -16,13 +15,13 @@ class MaterialSeeder extends Seeder
         Material::create([
             'name' => 'Vuna',
             'stock_quantity' => 50,
-            'price_per_meter' => 2500.00
+            'price_per_meter' => 2500.00,
         ]);
 
         Material::create([
             'name' => 'Pamuk',
             'stock_quantity' => 100,
-            'price_per_meter' => 1200.00
+            'price_per_meter' => 1200.00,
         ]);
     }
 }

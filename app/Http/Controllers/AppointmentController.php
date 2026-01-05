@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AppointmentStoreRequest;
 use App\Http\Requests\AppointmentUpdateRequest;
 use App\Models\Appointment;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
 use App\Models\Service;
+use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {

@@ -30,7 +30,6 @@ final class OrderControllerTest extends TestCase
         $response->assertViewHas('orders', $orders);
     }
 
-
     #[Test]
     public function create_displays_view(): void
     {
@@ -39,7 +38,6 @@ final class OrderControllerTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('order.create');
     }
-
 
     #[Test]
     public function store_uses_form_request_validation(): void
@@ -79,7 +77,6 @@ final class OrderControllerTest extends TestCase
         $response->assertSessionHas('order.id', $order->id);
     }
 
-
     #[Test]
     public function show_displays_view(): void
     {
@@ -92,7 +89,6 @@ final class OrderControllerTest extends TestCase
         $response->assertViewHas('order', $order);
     }
 
-
     #[Test]
     public function edit_displays_view(): void
     {
@@ -104,7 +100,6 @@ final class OrderControllerTest extends TestCase
         $response->assertViewIs('order.edit');
         $response->assertViewHas('order', $order);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -142,7 +137,6 @@ final class OrderControllerTest extends TestCase
         $this->assertEquals($total_price, $order->total_price);
         $this->assertEquals($status, $order->status);
     }
-
 
     #[Test]
     public function destroy_deletes_and_redirects(): void

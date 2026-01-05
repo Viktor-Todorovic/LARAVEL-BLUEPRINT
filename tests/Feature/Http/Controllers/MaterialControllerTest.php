@@ -28,7 +28,6 @@ final class MaterialControllerTest extends TestCase
         $response->assertViewHas('materials', $materials);
     }
 
-
     #[Test]
     public function create_displays_view(): void
     {
@@ -37,7 +36,6 @@ final class MaterialControllerTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('material.create');
     }
-
 
     #[Test]
     public function store_uses_form_request_validation(): void
@@ -74,7 +72,6 @@ final class MaterialControllerTest extends TestCase
         $response->assertSessionHas('material.id', $material->id);
     }
 
-
     #[Test]
     public function show_displays_view(): void
     {
@@ -87,7 +84,6 @@ final class MaterialControllerTest extends TestCase
         $response->assertViewHas('material', $material);
     }
 
-
     #[Test]
     public function edit_displays_view(): void
     {
@@ -99,7 +95,6 @@ final class MaterialControllerTest extends TestCase
         $response->assertViewIs('material.edit');
         $response->assertViewHas('material', $material);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -134,7 +129,6 @@ final class MaterialControllerTest extends TestCase
         $this->assertEquals($stock_quantity, $material->stock_quantity);
         $this->assertEquals($price_per_meter, $material->price_per_meter);
     }
-
 
     #[Test]
     public function destroy_deletes_and_redirects(): void

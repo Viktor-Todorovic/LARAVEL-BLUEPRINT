@@ -28,7 +28,6 @@ final class ServiceControllerTest extends TestCase
         $response->assertViewHas('services', $services);
     }
 
-
     #[Test]
     public function create_displays_view(): void
     {
@@ -37,7 +36,6 @@ final class ServiceControllerTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('service.create');
     }
-
 
     #[Test]
     public function store_uses_form_request_validation(): void
@@ -74,7 +72,6 @@ final class ServiceControllerTest extends TestCase
         $response->assertSessionHas('service.id', $service->id);
     }
 
-
     #[Test]
     public function show_displays_view(): void
     {
@@ -87,7 +84,6 @@ final class ServiceControllerTest extends TestCase
         $response->assertViewHas('service', $service);
     }
 
-
     #[Test]
     public function edit_displays_view(): void
     {
@@ -99,7 +95,6 @@ final class ServiceControllerTest extends TestCase
         $response->assertViewIs('service.edit');
         $response->assertViewHas('service', $service);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -134,7 +129,6 @@ final class ServiceControllerTest extends TestCase
         $this->assertEquals($description, $service->description);
         $this->assertEquals($price, $service->price);
     }
-
 
     #[Test]
     public function destroy_deletes_and_redirects(): void

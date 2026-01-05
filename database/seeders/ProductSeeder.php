@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\Product;
 use App\Models\Material;
+use App\Models\Product;
+use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
 {
@@ -22,7 +21,7 @@ class ProductSeeder extends Seeder
             'material_id' => $material->id,
             'price' => 12500.00,
             'image_path' => 'images/sako.jpg',
-            'is_offer' => false
+            'is_offer' => false,
         ]);
 
         Product::create([
@@ -31,7 +30,7 @@ class ProductSeeder extends Seeder
             'material_id' => 2,
             'price' => 4500.00,
             'image_path' => 'images/duks.jpg',
-            'is_offer' => true
+            'is_offer' => true,
         ]);
 
         Product::create([
@@ -40,7 +39,7 @@ class ProductSeeder extends Seeder
             'material_id' => 1,
             'price' => 1500.00,
             'image_path' => 'images/majica.jpg',
-            'is_offer' => true
+            'is_offer' => true,
         ]);
     }
 }
