@@ -6,7 +6,6 @@ use App\Models\Material;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use App\Models\User;
 
 class ProductTest extends TestCase
 {

@@ -4,7 +4,6 @@ namespace Tests\Feature\Auth;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use App\Models\User;
 
 class RegistrationTest extends TestCase
 {
@@ -27,7 +26,7 @@ class RegistrationTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-    
-    $response->assertRedirect(route('ponuda.dana', absolute: false));
+
+        $response->assertRedirect(route('ponuda.dana', absolute: false));
     }
 }
