@@ -17,14 +17,14 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav w-100 align-items-center">
                     
-                    <a class="nav-link fw-bold me-3 {{ request()->routeIs('ponuda.dana') ? 'active-link' : 'text-white' }}" 
+                    <a class="nav-link fw-bold me-3 {{ request()->is('/') || request()->routeIs('ponuda.dana') ? 'active-link' : 'text-white' }}" 
                        href="{{ route('ponuda.dana') }}">Ponuda dana</a>
 
                     <a class="nav-link fw-bold me-3 {{ request()->routeIs('products.index') ? 'active-link' : 'text-white' }}" 
                        href="{{ route('products.index') }}">Katalog</a>
                     
                     <a class="nav-link fw-bold me-3 {{ request()->routeIs('appointments.create') ? 'active-link' : 'text-white' }}" 
-                       href="{{ route('appointments.create') }}">Termin</a>
+                       href="{{ auth()->check() ? route('appointments.create') : route('login') }}">Termin</a>
 
                     @auth
                         @if(auth()->user()->is_admin)
@@ -33,9 +33,7 @@
                                <i class="bi bi-gear-fill"></i> Admin Panel
                             </a>
                         @endif
-                    @endauth
-                    
-                    @auth
+                        
                         <form method="POST" action="{{ route('logout') }}" class="ms-auto mb-0">
                             @csrf
                             <button type="submit" class="nav-link fw-bold text-white border-0 bg-transparent px-3 py-2">
@@ -43,6 +41,13 @@
                             </button>
                         </form>
                     @endauth
+
+                    @guest
+                        <div class="ms-auto d-flex">
+                            <a class="nav-link fw-bold text-white me-2" href="{{ route('login') }}">Prijava</a>
+                            <a class="nav-link fw-bold text-white" href="{{ route('register') }}">Registracija</a>
+                        </div>
+                    @endguest
                 </div>
             </div>
         </div>
@@ -57,21 +62,21 @@
 </html>
 
 <style>
-    /* Boja za link koji NIJE aktivan kada se pređe mišem */
+
     .nav-link:hover {
-        color: #d4edda !important; /* Svetlo zelena na hover */
+        color: #d4edda !important; 
     }
 
-    /* Boja za AKTIVAN link */
+
     .active-link {
-        background-color: #1e7e34 !important; /* Tamno zelena */
+        background-color: #1e7e34 !important; 
         color: white !important;
         border-radius: 5px;
         padding-left: 10px !important;
         padding-right: 10px !important;
     }
 
-    /* Posebna boja za Admin link da bi se istakao ako nije aktivan */
+
     .text-warning {
         color: #ffc107 !important;
     }

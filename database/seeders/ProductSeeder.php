@@ -41,5 +41,13 @@ class ProductSeeder extends Seeder
             'image_path' => 'images/majica.jpg',
             'is_offer' => true,
         ]);
+        Product::create([
+            'name' => 'Plava dukserica',
+            'description' => 'Udobna i topla plava dukserica za zimu.',
+            'material_id' => 1,
+            'price' => 3600.00,
+            'image_path' => 'images/plava_dukserica.jpg',
+            'is_offer' => true,
+        ]);
     }
 }

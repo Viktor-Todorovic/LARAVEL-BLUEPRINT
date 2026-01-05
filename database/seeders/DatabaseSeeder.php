@@ -30,6 +30,13 @@ class DatabaseSeeder extends Seeder
             'is_admin' => false,
         ]);
 
+        User::create([
+            'name' => 'User',
+            'email' => 'user@salon.com',
+            'password' => Hash::make('user123'),
+            'is_admin' => false,
+        ]);
+
         $this->call([
             ServiceSeeder::class,
             MaterialSeeder::class,
