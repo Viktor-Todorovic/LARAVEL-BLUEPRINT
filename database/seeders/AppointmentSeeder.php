@@ -19,6 +19,7 @@ class AppointmentSeeder extends Seeder
 
         Appointment::create([
             'client_name' => 'Viktor Todorović',
+            'user_id' => 1,
             'client_phone' => '0641234567',
             'service_id' => 1,
             'appointment_date' => now()->addDays(3),

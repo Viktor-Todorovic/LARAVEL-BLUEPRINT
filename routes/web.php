@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('materials', MaterialController::class);
     Route::resource('products', ProductController::class)->except(['index']);
     Route::resource('appointments', AppointmentController::class)->except(['create', 'store']);
+
+    Route::get('/moji-termini', [AppointmentController::class, 'myAppointments'])->name('appointments.my');
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {

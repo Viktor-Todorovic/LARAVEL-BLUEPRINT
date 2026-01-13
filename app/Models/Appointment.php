@@ -16,6 +16,7 @@ class Appointment extends Model
      * @var array
      */
     protected $fillable = [
+        'user_id',
         'client_name',
         'client_phone',
         'service_id',
@@ -31,6 +32,7 @@ class Appointment extends Model
     {
         return [
             'id' => 'integer',
+            'user_id' => 'integer',
             'service_id' => 'integer',
             'appointment_date' => 'datetime',
         ];

@@ -33,6 +33,8 @@
                                <i class="bi bi-gear-fill"></i> Admin Panel
                             </a>
                         @endif
+
+                        <a class="nav-link fw-bold text-white me-3" href="{{ route('appointments.my') }}">Moji termini</a>
                         
                         <form method="POST" action="{{ route('logout') }}" class="ms-auto mb-0">
                             @csrf
